@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Janiki ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .sobre {
+            width: 200px;
+            height: 150px;
+            background: red;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        .sobre:hover {
+            transform: scale(1.1);
+        }
+        .sobre::before, .sobre::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .sobre::before {
+            border-width: 75px 100px 0 100px;
+            border-color: white transparent transparent transparent;
+            top: 0;
+            left: 0;
+        }
+        .sobre::after {
+            border-width: 0 100px 75px 100px;
+            border-color: transparent transparent white transparent;
+            bottom: 0;
+            left: 0;
+        }
+        .carta {
+            display: none;
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) scale(0.8);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        .botones {
+            margin-top: 20px;
+        }
+        .botones button {
+            margin: 5px;
+            padding: 15px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .botones button:hover {
+            transform: scale(1.1);
+        }
+        .sorpresa {
+            display: none;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: darkred;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .corazon {
+            position: absolute;
+            font-size: 24px;
+            color: red;
+            animation: flotar 4s infinite ease-in-out;
+        }
+        @keyframes flotar {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-100px) scale(1.2); opacity: 0.6; }
+            100% { transform: translateY(-200px) scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sobre" onclick="abrirCarta()">💌</div>
+    <div class="carta" id="carta">
+        <p>¿Quieres ser mi novia? ❤️</p>
+        <div class="botones">
+            <button onclick="aceptar()" style="background-color: #ff4d4d; color: white;">Sí</button>
+            <button id="no" onclick="rechazar()" style="background-color: #ffcccc; color: black;">No</button>
+        </div>
+    </div>
+    <div class="sorpresa" id="sorpresa">
+       <img src="ramo.jpg" width="150" alt="Descripción">
+
+        <p>Te amo mucho mi JANIKI 💛🌻,desde que te conozco no puedo dejar de pensar en ti , te volviste la niña mas importante de todo este universo, eres la mas buapa 
+la mas preciosa, tus ojitos son los mas divinos que he visto en mi vida, tus cachetitos amo besarlos y tambien tus labios , tienes unos hermosos sentimientos y muy bonitos valores, eres respetuosa y amable  , simplemente la mejor niña del mundo.
+Prometo hacerte feliz y cuidar de tu hermoso corazoncito </p>
+    </div>
+    <script>
+        function abrirCarta() {
+            let carta = document.getElementById('carta');
+            carta.style.display = 'block';
+            setTimeout(() => { carta.style.transform = 'translateY(-50%) scale(1)'; }, 100);
+            generarCorazones();
+        }
+        function aceptar() {
+            document.getElementById('carta').style.display = 'none';
+            document.getElementById('sorpresa').style.display = 'block';
+            generarCorazonesFondo();
+        }
+        function rechazar() {
+            alert('No puedes decir que no 🙈💕');
+            setTimeout(() => {
+                document.getElementById('no').innerText = 'Sí';
+                document.getElementById('no').setAttribute('onclick', 'aceptar()');
+            }, 1000);
+        }
+        function generarCorazones() {
+            for (let i = 0; i < 10; i++) {
+                let corazon = document.createElement('div');
+                corazon.classList.add('corazon');
+                corazon.innerHTML = '❤️';
+                document.body.appendChild(corazon);
+                corazon.style.left = Math.random() * window.innerWidth + 'px';
+                corazon.style.top = Math.random() * window.innerHeight + 'px';
+                setTimeout(() => { corazon.remove(); }, 4000);
+            }
+        }
+        function generarCorazonesFondo() {
+            setInterval(() => {
+                let corazon = document.createElement('div');
+                corazon.classList.add('corazon');
+                corazon.innerHTML = '❤️';
+                document.body.appendChild(corazon);
+                corazon.style.left = Math.random() * window.innerWidth + 'px';
+                corazon.style.top = Math.random() * window.innerHeight + 'px';
+                setTimeout(() => { corazon.remove(); }, 4000);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
